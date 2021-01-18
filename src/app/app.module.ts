@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { NavFrameComponent } from './components/nav-frame/nav-frame.component';
 import { MaterialExporterModule } from './modules/material-exporter/material-exporter.module';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavFrameComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
