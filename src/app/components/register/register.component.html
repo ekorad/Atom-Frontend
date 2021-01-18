@@ -6,12 +6,12 @@
     </a>
     <h1 style="margin-left: 10px;" fxHide.xs>Inregistrare cont utilizator</h1>
     <span class="spacer" fxFlex="auto"></span>
-    <a routerLink="login" class="button-link">
+    <a routerLink="/login" class="button-link">
       <button mat-icon-button matTooltip="Conectare la contul meu" matTooltipShowDelay="1000">
         <mat-icon>account_circle</mat-icon>
       </button>
     </a>
-    <a routerLink="forget-pass" class="button-link">
+    <a routerLink="/forget-pass" class="button-link">
       <button mat-icon-button matTooltip="Mi-am uitat parola" matTooltipShowDelay="1000">
         <mat-icon>vpn_key</mat-icon>
       </button>
@@ -65,7 +65,7 @@
       <mat-error *ngIf="password.invalid && password.touched">{{getFieldError(password)}}</mat-error>
     </mat-form-field>
 
-    <button (click)="test()" class="submit-button" mat-raised-button color="primary"
+    <button class="submit-button" mat-raised-button color="primary"
       [disabled]="profileForm.invalid || profileForm.pending">Inregistrare cont
       nou</button>
   </form>
