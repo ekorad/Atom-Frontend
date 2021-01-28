@@ -20,7 +20,9 @@
 </mat-toolbar>
 
 <div class="main-container" ngStyle.lt-md="width: 100%; padding: 0">
-  <form [formGroup]="loginForm" ngClass.gt-sm="mat-elevation-z4" ngStyle.lt-sm="padding: 20px" novalidate>
+  <form [formGroup]="loginForm" ngClass.gt-sm="mat-elevation-z4" ngStyle.lt-sm="padding: 20px" (ngSubmit)="onSubmit()"
+    novalidate>
+
     <mat-form-field appearance="outline" hideRequiredMarker>
       <mat-label>Nume utilizator</mat-label>
       <input formControlName="username" type="text" matInput required />
@@ -34,8 +36,10 @@
     </mat-form-field>
 
     <div fxLayoutGap.gt-xs="15px" fxLayout="row wrap">
-      <button fxFlex="auto" class="custom-button" mat-raised-button color="primary" [disabled]="loginForm.invalid">Conectare</button>
-      <a ngStyle.xs="width: 100%" routerLink="/forget-pass"><button ngStyle.xs="width: 100%;" class="custom-button" mat-raised-button color="warn">Mi-am uitat parola</button></a>
+      <button type="submit" fxFlex="auto" class="custom-button" mat-raised-button color="primary"
+        [disabled]="loginForm.invalid || loginLoading">Conectare</button>
+      <a ngStyle.xs="width: 100%" routerLink="/forget-pass"><button ngStyle.xs="width: 100%;" class="custom-button"
+          mat-raised-button color="warn">Mi-am uitat parola</button></a>
     </div>
   </form>
 </div>

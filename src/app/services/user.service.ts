@@ -1,12 +1,13 @@
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // * mock function
   // TODO: implement server-side checking
@@ -37,4 +38,6 @@ export class UserService {
       }, 2000);
     });
   }
+
 }
+
