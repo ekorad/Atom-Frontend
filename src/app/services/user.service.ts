@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { User } from './../models/user';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,34 +10,18 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // * mock function
-  // TODO: implement server-side checking
   checkUsernameExists(username: string): Observable<boolean> {
-    return new Observable<boolean>(subscriber => {
-      setTimeout(() => {
-        if (username === 'ekorad') {
-          subscriber.next(true);
-        } else {
-          subscriber.next(false);
-        }
-        subscriber.complete();
-      }, 2000);
-    });
+    const getParams = new HttpParams().set('username', username);
+    return this.http.get<boolean>('http://192.168.1.194:8080/users/check', { params: getParams });
   }
 
-  // * mock function
-  // TODO: implement server-side checking
   checkEmailExists(email: string): Observable<boolean> {
-    return new Observable<boolean>(subscriber => {
-      setTimeout(() => {
-        if (email === 'ekorad@yahoo.com') {
-          subscriber.next(true);
-        } else {
-          subscriber.next(false);
-        }
-        subscriber.complete();
-      }, 2000);
-    });
+    const getParams = new HttpParams().set('email', email);
+    return this.http.get<boolean>('http://192.168.1.194:8080/users/check', { params: getParams });
+  }
+
+  registerNewUser(user: User): Observable<unknown> {
+    return this.http.post('http://192.168.1.194:8080/users/add', user);
   }
 
 }

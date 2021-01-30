@@ -1,3 +1,5 @@
+import { JwtPayloadExtension } from './../helpers/jwt-payload-extension';
+import jwt_decode from 'jwt-decode';
 import { Token } from './../models/token';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -68,5 +70,27 @@ export class AuthService {
     }
 
     return exp > now;
+  }
+
+  getAuthorities(): string[] | null {
+    const jwt = this.retrieveToken();
+    if (jwt) {
+      const decoded = jwt_decode<JwtPayloadExtension>(jwt);
+      const authorities = decoded.authorities?.split(', ');
+      if (authorities) {
+        return authorities;
+      }
+    }
+    return null;
+  }
+
+  hasElevated(): boolean {
+    const authorities = this.getAuthorities();
+    if (authorities) {
+      if (authorities.includes('ELEVATED')) {
+        return true;
+      }
+    }
+    return false;
   }
 }

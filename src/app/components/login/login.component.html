@@ -11,7 +11,7 @@
         <mat-icon>person_add</mat-icon>
       </button>
     </a>
-    <a routerLink="/forget-pass" class="button-link">
+    <a routerLink="/reset-password" class="button-link">
       <button mat-icon-button matTooltip="Mi-am uitat parola" matTooltipShowDelay="1000">
         <mat-icon>vpn_key</mat-icon>
       </button>
@@ -38,7 +38,7 @@
     <div fxLayoutGap.gt-xs="15px" fxLayout="row wrap">
       <button type="submit" fxFlex="auto" class="custom-button" mat-raised-button color="primary"
         [disabled]="loginForm.invalid || loginLoading">Conectare</button>
-      <a ngStyle.xs="width: 100%" routerLink="/forget-pass"><button ngStyle.xs="width: 100%;" class="custom-button"
+      <a ngStyle.xs="width: 100%" routerLink="/reset-password"><button ngStyle.xs="width: 100%;" class="custom-button"
           mat-raised-button color="warn">Mi-am uitat parola</button></a>
     </div>
   </form>

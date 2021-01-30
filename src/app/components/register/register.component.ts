@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
+import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { UserService } from './../../services/user.service';
 
 @Component({
@@ -20,12 +22,14 @@ export class RegisterComponent implements OnInit {
     email: ['', { validators: [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)], asyncValidators: [this.isEmailTaken()], updateOn: 'blur' }],
     password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_])[a-zA-Z0-9!@#$%^&*_]+$/)], updateOn: 'blur' }]
   });
+  registerLoading = false;
 
   constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
               private titleService: Title,
               private fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
     this.titleService.setTitle('Inregistrare cont');
     this.matIconRegistry.addSvgIcon(
       'atom',
@@ -90,4 +94,31 @@ export class RegisterComponent implements OnInit {
     return this.profileForm.get('password') as FormControl;
   }
 
+  onSubmit(): void {
+    let user: User = {
+      id: 0,
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      username: this.username.value,
+      email: this.email.value,
+      password: this.password.value,
+      role: 'USER',
+      activated: false,
+      locked: false
+    };
+
+    this.registerLoading = true;
+    this.userService.registerNewUser(user).subscribe(
+      something => console.log(something),
+      err => {
+        this.registerLoading = false;
+        this.profileForm.reset();
+        this.profileForm.markAsPristine();
+      },
+      () => {
+        this.registerLoading = false;
+        this.router.navigateByUrl('/login');
+      }
+    );
+  }
 }
