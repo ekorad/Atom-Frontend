@@ -16,6 +16,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserPermissionsComponent } from './components/admin/user-permissions/user-permissions.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { UserRolesComponent } from './components/admin/user-roles/user-roles.component';
+import { PermissionQuickviewComponent } from './components/sub/permission-quickview/permission-quickview.component';
+import { RoleComponent } from './components/sub/role/role.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     LoginComponent,
     AdminComponent,
     UserPermissionsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UserRolesComponent,
+    PermissionQuickviewComponent,
+    RoleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 export interface User {
+  [propName: string]: number | string | boolean;
   id: number;
   firstName: string;
   lastName: string;

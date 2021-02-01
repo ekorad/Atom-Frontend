@@ -13,6 +13,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const MODULES = [
   MatToolbarModule,
@@ -27,7 +31,11 @@ const MODULES = [
   MatPaginatorModule,
   MatSortModule,
   MatSnackBarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatChipsModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatExpansionModule
 ];
 
 @NgModule({
