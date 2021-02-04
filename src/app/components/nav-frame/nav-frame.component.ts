@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { JwtPayloadExtension } from './../../helpers/jwt-payload-extension';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './../../services/auth.service';
@@ -33,7 +34,8 @@ export class NavFrameComponent implements OnInit, OnDestroy, AfterViewInit {
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
               private authService: AuthService,
-              private snackbar: MatSnackBar) {
+              private snackbar: MatSnackBar,
+              private cartService: ShoppingCartService) {
     this.matIconRegistry.addSvgIcon(
       'atom',
       this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/atom.svg')
@@ -44,7 +46,6 @@ export class NavFrameComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // close side menu at breakpoint
     this.mcSub = this.mediaObserver.asObservable()
       .pipe(
         distinctUntilChanged((prev, crt) => prev[0].mqAlias
@@ -78,8 +79,8 @@ export class NavFrameComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-  routeTo(href: string): void {
-
+  countCartItems(): number {
+    return this.cartService.countItems();
   }
 
 }

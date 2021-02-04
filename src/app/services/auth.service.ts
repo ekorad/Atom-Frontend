@@ -84,6 +84,18 @@ export class AuthService {
     return null;
   }
 
+  getUsername(): string | null {
+    const jwt = this.retrieveToken();
+    if (jwt) {
+      const decoded = jwt_decode<JwtPayloadExtension>(jwt);
+      const username = decoded.sub;
+      if (username) {
+        return username;
+      }
+    }
+    return null;
+  }
+
   hasElevated(): boolean {
     const authorities = this.getAuthorities();
     if (authorities) {

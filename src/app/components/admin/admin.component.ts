@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
 
   headingTitle = '';
   readonly links = [
-    { caption: 'Conturi utilizatori', href: '' },
+    { caption: 'Conturi utilizatori', href: '/admin/users' },
     { caption: 'Roluri utilizatori', href: '/admin/roles' },
     { caption: 'Permisiuni utilizatori', href: '/admin/permissions' }
   ];

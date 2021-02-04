@@ -1,8 +1,11 @@
 .main-container {
   min-width: 900px;
-  max-width: 1200px;
   width: 75%;
   margin: 40px auto;
+}
+
+.table-container {
+  overflow: auto;
 }
 
 h2 {
@@ -27,6 +30,7 @@ mat-form-field {
 }
 
 mat-table {
+  min-width: 1000px;
   width: 100%;
 }
 
@@ -66,26 +70,30 @@ mat-cell {
   padding: 7px 5px;
 }
 
-.mat-column-select {
-  flex: 0 0 7%;
+mat-chip {
+  cursor: pointer;
 }
 
 .mat-column-id {
   flex: 0 0 7%;
 }
 
-.mat-column-name {
-  flex: 0 0 15%;
+.mat-column-email {
+  flex: 0 0 20%;
 }
 
-.mat-column-permissions {
-  flex: 0 0 35%;
+.mat-column-activated {
+  flex: 0 0 10%;
+}
+
+.mat-column-locked {
+  flex: 0 0 10%;
+}
+
+.mat-column-select {
+  flex: 0 0 7%;
 }
 
 .mat-column-edit {
-  flex: 0 0 15%;
-}
-
-mat-chip {
-  cursor: pointer;
+  flex: 0 0 10%;
 }

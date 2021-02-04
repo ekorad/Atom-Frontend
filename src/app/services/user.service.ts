@@ -24,5 +24,25 @@ export class UserService {
     return this.http.post('http://192.168.1.194:8080/users/add', user);
   }
 
+  editUser(username: string, user: User): Observable<unknown> {
+    const options = {
+      params: new HttpParams().set('username', username)
+    };
+    console.log(username + ' ' + user);
+    return this.http.put('http://192.168.1.194:8080/users/update', user, options);
+  }
+
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>('http://192.168.1.194:8080/users');
+  }
+
+  deleteUsers(usernames: string[]): Observable<unknown> {
+    const usernamesStr = usernames.join(',');
+    const options = {
+      params: new HttpParams().set('usernames', usernamesStr)
+    };
+    return this.http.delete('http://192.168.1.194:8080/users/remove', options);
+  }
+
 }
 

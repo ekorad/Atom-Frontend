@@ -1,0 +1,14 @@
+<div ngStyle.lt-md="width: 100%" class="main-container">
+  <mat-card class="product-card" *ngFor="let product of dataSource.data">
+    <mat-card-header>
+      <mat-card-title>{{product.productName}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      {{product.description}}
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="buy-button" mat-raised-button color="primary" (click)="addToCart(product.id)">Adauga in cos</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

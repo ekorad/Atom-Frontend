@@ -39,7 +39,7 @@
     <div *ngIf="isLoggedIn()">
       <a routerLink="/cart" class="button-link">
         <button mat-icon-button matTooltip="Mergi la cosul meu" matTooltipShowDelay="1000">
-          <mat-icon>shopping_cart</mat-icon>
+          <mat-icon [matBadgeHidden]="countCartItems() === 0" [matBadge]="countCartItems()" matBadgeColor="warn">shopping_cart</mat-icon>
         </button>
       </a>
       <button mat-icon-button (click)="logout()" matTooltip="Deconectare de la contul meu" matTooltipShowDelay="1000">
@@ -59,7 +59,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container fxFlexFill>
+<mat-sidenav-container style="min-height: 100%">
   <mat-sidenav style="min-width: 200px;" ngStyle.lt-sm="width: 100%" #sidenav>
     <mat-nav-list>
       <a mat-list-item *ngFor="let link of links" [href]="link.href" routerLinkActive="active">{{link.caption}}</a>
