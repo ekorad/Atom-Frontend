@@ -1,0 +1,26 @@
+<div class="main-container" ngStyle.lt-md="width: 100%" multi>
+  <mat-accordion *ngIf="currentUser">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Adrese de livrare
+        </mat-panel-title>
+        <mat-panel-description fxHide.lt-sm>
+          Editeaza-ti adresele de livrare
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <span *ngIf="!currentUser.addresses.length">Nu ai setat nici o adresa.</span>
+      <ul *ngIf="currentUser.addresses.length">
+        <li *ngFor="let address of currentUser.addresses">{{address}}</li>
+      </ul>
+      <form #addrForm="ngForm" [formGroup]="addressForm" novalidate (ngSubmit)="onNewAddressSubmit()">
+        <mat-form-field style="width: 100%" hideRequiredMarker appearance="outline">
+          <mat-label>Adresa</mat-label>
+          <input formControlName="address" matInput type="text" />
+        </mat-form-field>
+        <button [disabled]="addressForm.invalid" color="primary" type="submit" mat-raised-button>Adaugare adresa noua</button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <button style="margin-top: 25px; font-size: 1.1rem; padding: 5px 15px" color="primary" mat-raised-button (click)="saveProfile()">Salvare profil</button>
+</div>

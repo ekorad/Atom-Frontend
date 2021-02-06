@@ -1,0 +1,29 @@
+<div class="main-container">
+  <div class="cart-empty-notification mat-elevation-z8" *ngIf="!prods.size">
+    <span>Nu ai niciun produs in cosul de cumparaturi.</span>
+  </div>
+  <div *ngIf="prods.size">
+    <mat-card *ngFor="let entry of prods | keyvalue">
+      <mat-card-header>
+        <mat-card-title>{{entry.key.productName}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span>{{entry.key.description}}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="primary" (click)="addOne(entry.key)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="removeOne(entry.key)">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removeAll(entry.key)">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <span class="spacer" fxFlex="auto"></span>
+        <span><b>x {{entry.value}}</b></span>
+      </mat-card-actions>
+    </mat-card>
+    <button style="font-size: 1.2rem; padding: 8px 25px" color="primary" mat-raised-button (click)="proceedToOrder()">Plaseaza comanda</button>
+  </div>
+</div>

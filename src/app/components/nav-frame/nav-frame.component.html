@@ -42,6 +42,11 @@
           <mat-icon [matBadgeHidden]="countCartItems() === 0" [matBadge]="countCartItems()" matBadgeColor="warn">shopping_cart</mat-icon>
         </button>
       </a>
+      <a routerLink="/my-account" class="button-link">
+        <button mat-icon-button matTooltip="Mergi la contul meu" matTooltipShowDelay="1000">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </a>
       <button mat-icon-button (click)="logout()" matTooltip="Deconectare de la contul meu" matTooltipShowDelay="1000">
         <mat-icon>logout</mat-icon>
       </button>

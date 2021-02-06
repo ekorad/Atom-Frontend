@@ -97,7 +97,8 @@ export class UserComponent implements OnInit {
         email: this.email.value,
         role: this.role_c.value,
         activated: this.activated.value,
-        locked: this.locked.value
+        locked: this.locked.value,
+        addresses: []
       };
 
       if (this.operation === 'add') {

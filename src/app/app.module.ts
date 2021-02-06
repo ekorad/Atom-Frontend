@@ -23,6 +23,8 @@ import { WebUsersComponent } from './components/admin/web-users/web-users.compon
 import { RoleQuickviewComponent } from './components/sub/role-quickview/role-quickview.component';
 import { UserComponent } from './components/sub/user/user.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AllProductsComponent } from './components/all-products/all-products.com
     WebUsersComponent,
     RoleQuickviewComponent,
     UserComponent,
-    AllProductsComponent
+    AllProductsComponent,
+    MyAccountComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

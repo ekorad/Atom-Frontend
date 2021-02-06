@@ -1,5 +1,5 @@
 export interface User {
-  [propName: string]: number | string | boolean;
+  [propName: string]: number | string | boolean | string[];
   id: number;
   firstName: string;
   lastName: string;
@@ -9,4 +9,5 @@ export interface User {
   role: string;
   locked: boolean;
   activated: boolean;
+  addresses: string[];
 }

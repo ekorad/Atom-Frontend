@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let user: User = {
+    const user: User = {
       id: 0,
       firstName: this.firstName.value,
       lastName: this.lastName.value,
@@ -104,7 +104,8 @@ export class RegisterComponent implements OnInit {
       password: this.password.value,
       role: 'USER',
       activated: false,
-      locked: false
+      locked: false,
+      addresses: []
     };
 
     this.registerLoading = true;

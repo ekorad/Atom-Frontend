@@ -1,6 +1,7 @@
 import { ShoppingCart } from './../helpers/shopping-cart';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -57,4 +58,20 @@ export class ShoppingCartService {
     localStorage.removeItem(storageString);
   }
 
+  syncCart(prods: Map<Product, number>): void {
+    this.removeCart();
+
+    if (prods.size) {
+      const prodIds: number[] = [];
+      prods.forEach((val, key) => {
+        for (let i = 0; i < val; i++) {
+          prodIds.push(key.id);
+        }
+      });
+      const cart: ShoppingCart = {
+        productIds: prodIds
+      };
+      this.storeCart(cart);
+    }
+  }
 }
