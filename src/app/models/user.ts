@@ -10,4 +10,5 @@ export interface User {
   locked: boolean;
   activated: boolean;
   addresses: string[];
+  phoneNumbers: string[];
 }

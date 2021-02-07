@@ -105,7 +105,8 @@ export class RegisterComponent implements OnInit {
       role: 'USER',
       activated: false,
       locked: false,
-      addresses: []
+      addresses: [],
+      phoneNumbers: []
     };
 
     this.registerLoading = true;

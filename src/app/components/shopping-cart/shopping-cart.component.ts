@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Router } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Product } from './../../models/product';
@@ -16,7 +17,8 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private cartService: ShoppingCartService,
     private productService: ProductService,
-    private router: Router) { }
+    private router: Router,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     const cart = this.cartService.getCart();
@@ -84,7 +86,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   proceedToOrder(): void {
-    this.router.navigateByUrl('order');
+    this.router.navigateByUrl('place-order');
+  }
+
+  computeTotalPrice(): number {
+    const totalCosts = this.cartService.computePrice(this.prods);
+    this.dataService.totalCosts = totalCosts;
+    return totalCosts;
   }
 
 }

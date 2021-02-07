@@ -1,0 +1,11 @@
+.main-container {
+  width: 70%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.buy-button {
+  padding: 8px;
+  width: 100%;
+}

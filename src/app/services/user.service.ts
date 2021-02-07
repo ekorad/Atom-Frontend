@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { User } from './../models/user';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   constructor(private http: HttpClient,
-              private authService: AuthService) { }
+    private authService: AuthService) { }
 
   checkUsernameExists(username: string): Observable<boolean> {
     const getParams = new HttpParams().set('username', username);
@@ -56,6 +56,22 @@ export class UserService {
     return new Observable<User>(subscriber => {
       subscriber.error('No user currently logged in');
     });
+  }
+
+  requestPassResetByUsename(username: string): Observable<unknown> {
+    const params = new HttpParams().set('username', username);
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post('http://192.168.1.194:8080/users/pass-reset-request', params, options);
+  }
+
+  requestPassResetByEmail(email: string): Observable<unknown> {
+    const params = new HttpParams().set('email', email);
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post('http://192.168.1.194:8080/users/pass-reset-request', params, options);
   }
 
 }

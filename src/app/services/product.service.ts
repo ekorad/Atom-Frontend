@@ -21,4 +21,11 @@ export class ProductService {
     }
     return this.http.get<Product[]>('http://192.168.1.194:8080/products/produse', options);
   }
+
+  getById(id: number): Observable<Product> {
+    const options = {
+      params: new HttpParams().set('id', id.toString())
+    };
+    return this.http.get<Product>('http://192.168.1.194:8080/products/product', options);
+  }
 }

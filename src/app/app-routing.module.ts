@@ -1,3 +1,5 @@
+import { ViewProductComponent } from './components/view-product/view-product.component';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { MyAccountCanActivate } from './helpers/my-account-can-activate';
 import { MyAccountComponent } from './components/my-account/my-account.component';
@@ -20,7 +22,9 @@ const routes: Routes = [
     path: '', component: NavFrameComponent, children: [
       { path: '', component: AllProductsComponent },
       { path: 'my-account', component: MyAccountComponent, canActivate: [MyAccountCanActivate] },
-      { path: 'cart', component: ShoppingCartComponent, canActivate: [MyAccountCanActivate] }
+      { path: 'cart', component: ShoppingCartComponent, canActivate: [MyAccountCanActivate] },
+      { path: 'place-order', component: PlaceOrderComponent, canActivate: [MyAccountCanActivate] },
+      { path: 'view', component: ViewProductComponent }
     ]
   },
   { path: 'register', component: RegisterComponent },

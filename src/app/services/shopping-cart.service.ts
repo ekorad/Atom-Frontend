@@ -1,3 +1,5 @@
+import { Observable, of } from 'rxjs';
+import { ProductService } from './product.service';
 import { ShoppingCart } from './../helpers/shopping-cart';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
@@ -10,7 +12,8 @@ export class ShoppingCartService {
 
   private readonly username: string = 'nouser';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    private productService: ProductService) {
     const localUsername = this.authService.getUsername();
     if (localUsername) {
       this.username = localUsername;
@@ -73,5 +76,56 @@ export class ShoppingCartService {
       };
       this.storeCart(cart);
     }
+  }
+
+  computePrice(prods: Map<Product, number>): number {
+    let totalCost = 0;
+    if (prods.size) {
+      prods.forEach((value, key) => {
+        totalCost += key.newPrice * value;
+      });
+      return totalCost;
+    }
+    return 0;
+  }
+
+  computeCartPrice(): Observable<number> {
+    const cart = this.getCart();
+    if (cart) {
+      const idOccurences = new Map<number, number>();
+      for (const id of cart.productIds) {
+        if (!idOccurences.has(id)) {
+          idOccurences.set(id, 1);
+        } else {
+          const storedCount = idOccurences.get(id);
+          if (storedCount) {
+            idOccurences.set(id, storedCount + 1);
+          }
+        }
+      }
+      const ids = Array.from(idOccurences.keys());
+      const prodMap = new Map<Product, number>();
+      let products!: Product[];
+      return new Observable<number>(subscriber => {
+        this.productService.getAllByIds(ids)
+          .subscribe(recvProds => products = recvProds,
+            err => subscriber.error(err),
+            () => {
+              for (const prod of products) {
+                const storedCount = idOccurences.get(prod.id);
+                if (storedCount) {
+                  prodMap.set(prod, storedCount);
+                }
+              }
+              let totalPrice = 0;
+              prodMap.forEach((value, key) => {
+                totalPrice += key.newPrice * value;
+              });
+              subscriber.next(totalPrice);
+              subscriber.complete();
+            });
+      });
+    }
+    return new Observable<number>(subscriber => subscriber.error('No cart in local storage'));
   }
 }

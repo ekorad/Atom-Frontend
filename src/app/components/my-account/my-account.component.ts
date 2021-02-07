@@ -11,10 +11,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class MyAccountComponent implements OnInit {
 
   @ViewChild('addrForm', { static: false }) addrMatForm!: NgForm;
+  @ViewChild('phoneNumForm', { static: false }) phoneNumMatForm!: NgForm;
   currentUser!: User;
   loading = false;
   addressForm = this.fb.group({
     address: ['', { validators: Validators.required }]
+  });
+  phoneNumberForm = this.fb.group({
+    phoneNumber: ['', { validators: Validators.required }]
   });
 
   constructor(private userService: UserService,
@@ -40,12 +44,36 @@ export class MyAccountComponent implements OnInit {
     }
   }
 
+  onNewPhoneNumberSubmit(): void {
+    if (this.phoneNumberForm.valid) {
+      const control = this.phoneNumberForm.get('phoneNumber');
+      if (control) {
+        this.currentUser.phoneNumbers.push(control.value);
+        this.phoneNumMatForm.resetForm();
+      }
+    }
+  }
+
   saveProfile(): void {
     if (this.currentUser) {
       this.userService.editUser(this.currentUser.username, this.currentUser)
         .subscribe(stuff => { },
           err => console.log(err),
           () => { });
+    }
+  }
+
+  onRemoveAddressClick(addr: string): void {
+    const index: number = this.currentUser.addresses.indexOf(addr);
+    if (index !== -1) {
+      this.currentUser.addresses.splice(index, 1);
+    }
+  }
+
+  onRemovePhoneNumberClick(phNum: string): void {
+    const index: number = this.currentUser.phoneNumbers.indexOf(phNum);
+    if (index !== -1) {
+      this.currentUser.phoneNumbers.splice(index, 1);
     }
   }
 

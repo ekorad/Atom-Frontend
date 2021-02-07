@@ -9,6 +9,7 @@
       </mat-card-header>
       <mat-card-content>
         <span>{{entry.key.description}}</span>
+        <span class="price">Pret: <b style="color: red;">{{entry.key.newPrice}}</b> lei</span>
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button color="primary" (click)="addOne(entry.key)">
@@ -24,6 +25,10 @@
         <span><b>x {{entry.value}}</b></span>
       </mat-card-actions>
     </mat-card>
-    <button style="font-size: 1.2rem; padding: 8px 25px" color="primary" mat-raised-button (click)="proceedToOrder()">Plaseaza comanda</button>
+    <hr />
+    <span style="float: right; font-size: 1.2rem;">Pret total: <b>{{computeTotalPrice()}}</b> lei</span>
+    <div>
+      <button style="font-size: 1.2rem; padding: 8px 25px; margin-top: 10px" color="primary" mat-raised-button
+        (click)="proceedToOrder()">Plaseaza comanda</button>
+    </div>
   </div>
-</div>

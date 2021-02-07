@@ -25,6 +25,8 @@ import { UserComponent } from './components/sub/user/user.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
+import { ViewProductComponent } from './components/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     UserComponent,
     AllProductsComponent,
     MyAccountComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    PlaceOrderComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,

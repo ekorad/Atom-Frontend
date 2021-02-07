@@ -98,7 +98,8 @@ export class UserComponent implements OnInit {
         role: this.role_c.value,
         activated: this.activated.value,
         locked: this.locked.value,
-        addresses: []
+        addresses: [],
+        phoneNumbers: []
       };
 
       if (this.operation === 'add') {
@@ -108,7 +109,7 @@ export class UserComponent implements OnInit {
               console.log(err);
               this.loadingStatus = false;
               this.snackBar.open('A aparut o eroare, te rugam sa incerci din nou',
-                'Inchide', { duration: 3000 });
+                'Inchide', { duration: 8000 });
             },
             () => {
               this.loadingStatus = false;
